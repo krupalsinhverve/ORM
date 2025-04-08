@@ -12,6 +12,10 @@ const Profile = sequelize.define(
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Users", // this should match the table name Sequelize gives `User`
+        key: "id",
+      },
     },
     bio: {
       type: DataTypes.TEXT,
