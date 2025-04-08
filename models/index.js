@@ -1,6 +1,21 @@
-const sequelize = require('../config/database');
-const User = require('./user.model');
+const sequelize = require("../config/database");
+const User = require("./user.model");
+const Profile = require("./profile.model");
 
-const db = { sequelize, User };
+// Define associations here
+User.hasMany(Profile, {
+  foreignKey: "userId",
+  // onDelete: "CASCADE",
+  as: "pr"
+});
+Profile.belongsTo(User, {
+  foreignKey: "userId",
+  // as: "pr"
+  // onDelete: "CASCADE",
+});
 
-module.exports = db;
+module.exports = {
+  sequelize,
+  User,
+  Profile,
+};
