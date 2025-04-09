@@ -25,7 +25,7 @@ exports.createUser = async (userData) => {
 
 exports.getAllUsers = async () => {
   const data =  await db.User.findAll({
-    attributes: ["userId", "name", "email", "pr.bio" ],
+    attributes: ["id", "name", "email", "pr.bio"],
     raw: true,
     subQuery: false,
     logging:console.log,
@@ -33,14 +33,27 @@ exports.getAllUsers = async () => {
       required: false,
       as: "pr",
       model: db.Profile,
-      attributes: []
+      // attributes: []
     }]
   });
   console.log('data>>>>>>>>>', data)
+  return data
 };
 
 exports.getUsersById = async(id) => {
-  return await User.findByPk(id);
+  // return await User.findOne({
+  //   where: { id },
+  return await db.User.findByPk(id,{
+    attributes: ["id", "name", "email","pr.bio"],
+    raw:true,
+    subQuery:false,
+    logging:console.log,
+    include:[{
+      require:false,
+      as:"pr",
+      model:db.Profile
+    }]
+  });
 };
 
 exports.deleteUsersById = async (id)=>{
