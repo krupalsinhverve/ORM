@@ -8,6 +8,7 @@ const profileRoutes = require("./routes/profile.routes");
 const postRoutes = require("./routes/post.routes");
 const commentRoutes = require("./routes/comment.routes");
 const productRoutes = require("./routes/product.routes");
+const orderRoutes = require("./routes/order.routes");
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/product", productRoutes);
+app.use("/api/order", orderRoutes);
 
 sequelize
   .sync({ force: false })

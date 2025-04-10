@@ -62,6 +62,17 @@ Order.belongsTo(User, {
   as: "user",
 });
 
+//product to order
+Product.hasMany(Order, {
+  foreignKey: "productId",
+  onDelete: "CASCADE",
+});
+Order.belongsTo(Product, {
+  foreignKey: "productId",
+  onDelete: "CASCADE",
+  as: "product",
+});
+
 module.exports = {
   sequelize,
   User,

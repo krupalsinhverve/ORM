@@ -9,6 +9,14 @@ const Order = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "products",
+        key: "id",
+      },
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
